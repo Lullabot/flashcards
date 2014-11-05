@@ -22,7 +22,7 @@ function intialize(result){
   metaShown = false;
   
   // advance
-  $("body").click(function(){
+  $("html").click(function(){
     if (metaShown) {
       $("#meta").hide();
       metaShown = false;
