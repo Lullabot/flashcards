@@ -4,14 +4,6 @@ $(document).ready(function(){
         dataType: 'jsonp',
         success: function(result){
             intialize(result);
-            /*var text = '';
-            var len = dataWeGotViaJsonp.length;
-            for(var i=0;i<len;i++){
-                twitterEntry = dataWeGotViaJsonp[i];
-                text += '<p><img src = "' + twitterEntry.user.profile_image_url_https +'"/>' + twitterEntry['text'] + '</p>'
-            }
-            $('#twitterFeed').html(text);
-            */
         }
     });
 })
@@ -29,6 +21,7 @@ function intialize(result){
   $("#meta").hide();
   metaShown = false;
   
+  // advance
   $("body").click(function(){
     if (metaShown) {
       $("#meta").hide();
@@ -41,6 +34,11 @@ function intialize(result){
       });
     }
     
+  });
+  
+  // stop link clicks from bubbling up the DOM and triggering advance
+  $("a").click(function(event){
+    event.stopPropagation();
   });
   
   // this has funny performance issues on slower connections:
@@ -70,6 +68,8 @@ function nextUser(){
   if (userindex == userlength) {
     userindex = 0;
   }
+  // cache the next image
+  (new Image()).src = users[userindex].user.field_bio_image_2;
 }
 
 function preload(users) {
