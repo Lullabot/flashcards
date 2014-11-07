@@ -166,8 +166,9 @@ nav a:hover {
   font-size: small;
 }
 
-
-
+#photo img {
+  cursor: pointer;
+}
 
 
 
